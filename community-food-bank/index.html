@@ -310,22 +310,49 @@
   .footer-brand-glyph { width: 18px; height: 18px; color: var(--accent); }
 
   @media (max-width: 768px) {
-    .topnav-inner { padding: 12px 20px; gap: 12px; }
-    .nav-links { gap: 18px; font-size: 13px; }
-    .breadcrumb { padding: 16px 20px 0; font-size: 12px; }
-    .hero { padding: 36px 20px 24px; }
-    .hero h1 { font-size: 30px; }
-    .hero-tagline { font-size: 18px; }
-    .content { padding: 12px 20px 48px; }
-    .section-title { font-size: 24px; }
+    .topnav-inner { padding: 12px 16px; gap: 10px; flex-wrap: wrap; }
+    .nav-brand { font-size: 16px; }
+    .nav-links { gap: 16px; font-size: 14px; }
+    .nav-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 4px; }
+    .breadcrumb { padding: 16px 18px 0; font-size: 12px; word-break: break-word; }
+    .breadcrumb a { display: inline-block; padding: 6px 0; min-height: 32px; }
+    .hero { padding: 32px 18px 20px; }
+    .hero h1 { font-size: clamp(26px, 7.5vw, 34px); }
+    .hero-tagline { font-size: 17px; }
+    .content { padding: 12px 18px 44px; }
+    .section-title { font-size: 22px; }
     .prose { font-size: 17px; }
+    .prose ul li { font-size: 16px; }
     .status-card, .deliverable-card { padding: 20px; }
-    .deliverable-title { font-size: 22px; }
+    .deliverable-title { font-size: 21px; }
+    .deliverable-body { font-size: 14.5px; }
+    .deliverable-cta { padding: 12px 20px; min-height: 44px; font-size: 12px; }
     .status-card-body { font-size: 16px; }
+    .discretion { font-size: 13.5px; }
+    footer { padding: 40px 18px 32px; }
+    .footer-inner { text-align: center; justify-content: center; }
   }
   @media (max-width: 480px) {
+    .topnav-inner { padding: 10px 14px; }
     .nav-section { display: none; }
+    .nav-links { gap: 12px; font-size: 13px; }
     .nav-links a:not(:last-child) { display: none; }
+    .breadcrumb { padding: 12px 14px 0; font-size: 11px; letter-spacing: 0.3px; }
+    .breadcrumb .sep { margin: 0 5px; }
+    .hero { padding: 24px 14px 16px; }
+    .hero h1 { font-size: clamp(22px, 8.5vw, 28px); letter-spacing: -0.4px; line-height: 1.12; }
+    .hero-tagline { font-size: 16px; margin-top: 12px; }
+    .content { padding: 8px 14px 36px; }
+    .content-section { margin-bottom: 32px; }
+    .section-title { font-size: 19px; }
+    .prose { font-size: 16px; }
+    .prose ul li { font-size: 15.5px; padding-left: 18px; }
+    .status-card, .deliverable-card { padding: 16px; }
+    .deliverable-title { font-size: 19px; }
+    .deliverable-label { font-size: 10px; letter-spacing: 1.4px; }
+    .deliverable-cta { width: 100%; justify-content: center; padding: 13px 18px; }
+    .status-card-body { font-size: 15.5px; }
+    .versions { padding: 24px 14px 36px; }
   }
 </style>
 </head>
