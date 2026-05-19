@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://food.nullsetlabs.org/sitemap.xml

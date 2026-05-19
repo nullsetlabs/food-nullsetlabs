@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NutriScan, Null Set Labs</title>
+
+<!-- Google Analytics (gtag.js) - shared Null Set Labs property -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R1S9F2Z4HS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-R1S9F2Z4HS');
+</script>
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://food.nullsetlabs.org/nutriscan/">
+<meta property="og:title" content="NutriScan, Null Set Labs">
+<meta property="og:description" content="A multi-source nutritional quality classifier for Indian and global foods. Built on the published Nutri-Score algorithm, the NOVA processing scale, and the UK FSA traffic-light system.">
+<meta property="og:image" content="https://food.nullsetlabs.org/nutriscan/og-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Null Set Labs">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NutriScan, Null Set Labs">
+<meta name="twitter:description" content="A multi-source nutritional quality classifier for Indian and global foods.">
+<meta name="twitter:image" content="https://food.nullsetlabs.org/nutriscan/og-preview.png">
+
+<!-- General Meta -->
+<meta name="description" content="NutriScan is a multi-source nutritional quality classifier built on the published Nutri-Score algorithm, the NOVA processing scale, and the UK FSA traffic-light system.">
+<meta name="author" content="Null Set Labs">
+<link rel="canonical" href="https://food.nullsetlabs.org/nutriscan/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0a0a0f">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="https://nullsetlabs.org/brand-assets/favicons/favicon.svg">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="https://nullsetlabs.org/brand-assets/favicons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://nullsetlabs.org/brand-assets/favicons/apple-touch-icon.png">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #15151d;
+    --surface-2: #1d1d27;
+    --border: #26262f;
+    --border-strong: #353541;
+    --text: #ededeb;
+    --text-dim: #8a8a92;
+    --text-dimmer: #5e5e66;
+    --accent: #c19a5b;
+    --accent-bright: #d4b076;
+    --accent-soft: rgba(193, 154, 91, 0.12);
+    --accent-border: rgba(193, 154, 91, 0.28);
+    --brand-blue: #3b82f6;
+    --progress: #fbbf24;
+    --progress-bg: rgba(251, 191, 36, 0.12);
+    --max-width: 1080px;
+    --max-text: 680px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--accent-soft); color: var(--accent-bright); }
+
+  /* TOP NAV */
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topnav-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Newsreader', serif; font-weight: 500; font-size: 17px;
+    letter-spacing: 0.2px; color: var(--text);
+  }
+  .nav-brand-glyph { width: 22px; height: 22px; color: var(--accent); }
+  .nav-section {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px;
+  }
+  .nav-links { display: flex; align-items: center; gap: 24px; font-size: 14px; color: var(--text-dim); }
+  .nav-links a { transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* BREADCRUMB */
+  .breadcrumb {
+    max-width: var(--max-text); margin: 0 auto;
+    padding: 20px 24px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
+  }
+  .breadcrumb a { transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .breadcrumb .sep { color: var(--text-dimmer); margin: 0 8px; }
+  .breadcrumb .current { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    max-width: var(--max-text); margin: 0 auto;
+    padding: 48px 24px 32px;
+  }
+  .hero-status-row {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .hero h1 {
+    font-family: 'Newsreader', serif; font-weight: 500;
+    font-size: clamp(40px, 5.5vw, 56px);
+    letter-spacing: -0.6px; color: var(--text);
+    line-height: 1.08;
+  }
+  .hero-tagline {
+    font-family: 'Newsreader', serif; font-weight: 400; font-style: italic;
+    font-size: 21px; color: var(--text-dim);
+    margin-top: 16px; line-height: 1.45;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap;
+  }
+  .pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
+  .pill-progress { background: var(--progress-bg); color: var(--progress); }
+  .pill-progress::before { background: var(--progress); }
+
+  /* CONTENT SECTIONS */
+  .content {
+    max-width: var(--max-text); margin: 0 auto;
+    padding: 16px 24px 64px;
+  }
+  .content-section { margin-bottom: 44px; }
+  .content-section:last-child { margin-bottom: 0; }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Newsreader', serif; font-weight: 500;
+    font-size: 28px; letter-spacing: -0.3px;
+    color: var(--text); margin-bottom: 18px; line-height: 1.2;
+  }
+  .prose {
+    font-family: 'Newsreader', serif;
+    font-weight: 400; font-size: 19px;
+    line-height: 1.6; color: var(--text);
+  }
+  .prose p { margin-bottom: 16px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--accent-bright); font-weight: 600; }
+  .prose ul { list-style: none; padding: 0; margin: 14px 0 18px; }
+  .prose ul li {
+    position: relative;
+    padding-left: 22px; margin-bottom: 12px;
+    line-height: 1.55;
+  }
+  .prose ul li::before {
+    content: ''; position: absolute;
+    left: 2px; top: 0.7em;
+    width: 10px; height: 1px;
+    background: var(--accent);
+  }
+  .prose ul li:last-child { margin-bottom: 0; }
+
+  .status-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin-top: 8px;
+  }
+  .status-card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 10px; font-weight: 500;
+  }
+  .status-card-body {
+    font-family: 'Newsreader', serif;
+    font-size: 18px; line-height: 1.55; color: var(--text);
+  }
+
+  .discretion {
+    margin-top: 18px; padding: 14px 18px;
+    border-left: 2px solid var(--accent-border);
+    background: var(--accent-soft);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; color: var(--text-dim); line-height: 1.55;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* VERSIONS FOOTER */
+  .versions {
+    max-width: var(--max-text); margin: 0 auto;
+    padding: 32px 24px 56px;
+    border-top: 1px solid var(--border);
+  }
+  .versions-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-dimmer); margin-bottom: 14px; font-weight: 500;
+  }
+  .versions-empty {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--text-dim);
+  }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 48px 24px 36px; }
+  .footer-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    font-size: 12px; color: var(--text-dimmer); font-family: 'JetBrains Mono', monospace;
+  }
+  .footer-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Newsreader', serif; font-size: 16px; color: var(--text-dim);
+    transition: color 0.2s;
+  }
+  .footer-brand:hover { color: var(--accent); }
+  .footer-brand-glyph { width: 18px; height: 18px; color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .topnav-inner { padding: 12px 20px; gap: 12px; }
+    .nav-links { gap: 18px; font-size: 13px; }
+    .breadcrumb { padding: 16px 20px 0; font-size: 12px; }
+    .hero { padding: 36px 20px 24px; }
+    .hero h1 { font-size: 34px; }
+    .hero-tagline { font-size: 18px; }
+    .content { padding: 12px 20px 48px; }
+    .section-title { font-size: 24px; }
+    .prose { font-size: 17px; }
+    .status-card { padding: 20px; }
+    .status-card-body { font-size: 16px; }
+  }
+  @media (max-width: 480px) {
+    .nav-section { display: none; }
+    .nav-links a:not(:last-child) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="https://nullsetlabs.org/" class="nav-brand" aria-label="Null Set Labs home">
+      <svg class="nav-brand-glyph" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="navSlashGradient" x1="20%" y1="80%" x2="80%" y2="20%">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="100%" stop-color="#c19a5b"/>
+          </linearGradient>
+        </defs>
+        <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <line x1="5.5" y1="18.5" x2="18.5" y2="5.5" stroke="url(#navSlashGradient)" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      Null Set Labs
+    </a>
+    <span class="nav-section">Food Systems</span>
+    <div class="nav-links">
+      <a href="https://food.nullsetlabs.org/">Back to Food Systems</a>
+      <a href="https://nullsetlabs.org/">All pillars</a>
+    </div>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="https://nullsetlabs.org/">Null Set Labs</a>
+  <span class="sep">/</span>
+  <a href="https://food.nullsetlabs.org/">Food Systems and Access</a>
+  <span class="sep">/</span>
+  <span class="current">NutriScan</span>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-status-row">
+    <span class="pill pill-progress">In Preparation</span>
+  </div>
+  <h1>NutriScan</h1>
+  <p class="hero-tagline">A multi-source nutritional quality classifier for Indian and global foods.</p>
+</header>
+
+<!-- CONTENT -->
+<main class="content">
+
+  <section class="content-section">
+    <div class="section-label">The Issue</div>
+    <h2 class="section-title">Nutritional quality is read differently by every label.</h2>
+    <div class="prose">
+      <p>Front-of-pack nutrition labels were built independently by different national bodies, on different evidence bases, for different food environments. The same yoghurt can read as a green-light food on one system, a mid-grade letter on another, and an ultra-processed item on a third. For someone trying to compare two foods on a shelf, the labels do not agree, and most consumers see only one of them at a time.</p>
+      <p>The problem compounds when the food is not a Western retail package. Existing rating tools were built around supermarket labels with full nutrient panels and recognizable brand names. They do not handle home-cooked South Asian dishes, regional staples, or foods that move through the supply chain without a barcode. NutriScan is a classifier that brings <strong>three already-public rating systems</strong> together over a database that includes those foods.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="section-label">Source of Data</div>
+    <h2 class="section-title">Public food composition databases.</h2>
+    <div class="prose">
+      <p>The classifier draws from public food composition databases that publish nutrient-per-100g values for raw and prepared foods. The reference set spans Western retail packaging data, US public nutrient data, and Indian food composition tables, with global open-product coverage as a fallback. Specific dataset identifiers and the curated fallback set are held for direct conversations with collaborators.</p>
+      <p>Each food is looked up against the available sources, with conflicts resolved through a fixed precedence and a curated fallback database for foods that are not well-covered by any single source.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="section-label">Analysis Method</div>
+    <h2 class="section-title">Three published rating systems, applied in parallel.</h2>
+    <div class="prose">
+      <p>NutriScan does not introduce a new scoring method. It combines three peer-reviewed and publicly documented ones over a broader food database than any single tool currently covers:</p>
+      <ul>
+        <li><strong>Nutri-Score (A to E).</strong> Front-of-pack nutrition grade developed by Sante Publique France. A is best, E is worst. The algorithm is published.</li>
+        <li><strong>UK FSA traffic-light indicators.</strong> Red, amber, and green markers per serving for fat, saturated fat, sugar, and salt. The thresholds are published by the UK Food Standards Agency.</li>
+        <li><strong>NOVA processing level (1 to 4).</strong> Classification of foods by degree of industrial processing, originally developed at the University of Sao Paulo.</li>
+      </ul>
+      <p>For each food, NutriScan emits all three readings side by side. Where the three disagree, the user sees the disagreement rather than a forced consensus. The classifier's contribution is integration and coverage, not a new judgment about what a food is.</p>
+      <div class="discretion">
+        NutriScan's own thresholds, conflict-resolution rules, and validation set are held for direct conversations with collaborators. This page is a public concept overview, not a methods document.
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="section-label">How We Are Solving It</div>
+    <h2 class="section-title">A classifier that works on dal as cleanly as on cereal.</h2>
+    <div class="prose">
+      <p>Coverage of Indian and home-cooked foods is a deliberate scope choice. Most existing nutrition-rating tools were built around Western retail packaging, and they fall back to "unknown" or guess wrong on dishes that do not arrive in a box. NutriScan is built to close that gap by combining multiple food composition sources and a curated fallback set for common dishes that are otherwise poorly covered.</p>
+      <p>The tool is designed to be used at the point of decision: search a food by name, scan a barcode where one exists, and see a composite reading that names which system said what. Where a food is not covered by any source, the tool says so rather than guessing.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="section-label">What This Means</div>
+    <h2 class="section-title">For the scientific community.</h2>
+    <div class="prose">
+      <p>A multi-source view of nutritional quality is useful in three ways. For public-health researchers, it makes the disagreements between national labeling regimes legible at the food level rather than only in policy discussion. For nutrition educators working in mixed-cuisine populations, it provides a tool that does not silently fail on home-cooked dishes. For consumers, it puts three independent readings on the same screen, which is closer to what published evidence says about how food quality should be assessed.</p>
+      <p>The methods are all already published. NutriScan's contribution is integration, coverage, and a public interface that makes the comparison possible.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="section-label">Status</div>
+    <h2 class="section-title">Where things stand.</h2>
+    <div class="status-card">
+      <div class="status-card-label">Current status</div>
+      <p class="status-card-body">In preparation. Working prototype under development with faculty collaborators at an international research university. Public release pending.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- VERSIONS -->
+<section class="versions" aria-label="Versions">
+  <div class="versions-label">Versions</div>
+  <div class="versions-empty">No public releases yet. This row will list past versions as the project produces them.</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="https://nullsetlabs.org/" class="footer-brand">
+      <svg class="footer-brand-glyph" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="footerSlashGradient" x1="20%" y1="80%" x2="80%" y2="20%">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="100%" stop-color="#c19a5b"/>
+          </linearGradient>
+        </defs>
+        <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <line x1="5.5" y1="18.5" x2="18.5" y2="5.5" stroke="url(#footerSlashGradient)" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      Null Set Labs
+    </a>
+    <div>&copy; 2026 Null Set Labs &middot; food.nullsetlabs.org/nutriscan</div>
+  </div>
+</footer>
+
+<!-- Cloudflare Web Analytics - replace TBD-FOOD-TOKEN with the token issued for food.nullsetlabs.org once the Cloudflare Web Analytics property is registered -->
+<!-- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "TBD-FOOD-TOKEN"}'></script> -->
+<!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>

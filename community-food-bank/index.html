@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Community Food Bank Efficiency Project, Null Set Labs</title>
+
+<!-- Google Analytics (gtag.js) - shared Null Set Labs property -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R1S9F2Z4HS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-R1S9F2Z4HS');
+</script>
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://food.nullsetlabs.org/community-food-bank/">
+<meta property="og:title" content="Community Food Bank Efficiency Project, Null Set Labs">
+<meta property="og:description" content="Research on local food bank operations, demand patterns, and economic disparities in food access. Public deliverable: the Pantry Dashboard.">
+<meta property="og:image" content="https://food.nullsetlabs.org/community-food-bank/og-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Null Set Labs">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Community Food Bank Efficiency Project, Null Set Labs">
+<meta name="twitter:description" content="Research on local food bank operations, demand mapping, and economic disparities in community food access.">
+<meta name="twitter:image" content="https://food.nullsetlabs.org/community-food-bank/og-preview.png">
+
+<!-- General Meta -->
+<meta name="description" content="Operational research on local food bank workflows, demand patterns, and economic disparities in food access. The public deliverable is the Pantry Dashboard, a browser-based audience-aware dashboard tailored for food bank operations.">
+<meta name="author" content="Null Set Labs">
+<link rel="canonical" href="https://food.nullsetlabs.org/community-food-bank/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0a0a0f">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="https://nullsetlabs.org/brand-assets/favicons/favicon.svg">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="https://nullsetlabs.org/brand-assets/favicons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://nullsetlabs.org/brand-assets/favicons/apple-touch-icon.png">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #15151d;
+    --surface-2: #1d1d27;
+    --border: #26262f;
+    --border-strong: #353541;
+    --text: #ededeb;
+    --text-dim: #8a8a92;
+    --text-dimmer: #5e5e66;
+    --accent: #c19a5b;
+    --accent-bright: #d4b076;
+    --accent-soft: rgba(193, 154, 91, 0.12);
+    --accent-border: rgba(193, 154, 91, 0.28);
+    --brand-blue: #3b82f6;
+    --live: #4ade80;
+    --live-bg: rgba(74, 222, 128, 0.12);
+    --progress: #fbbf24;
+    --progress-bg: rgba(251, 191, 36, 0.12);
+    --max-width: 1080px;
+    --max-text: 680px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--accent-soft); color: var(--accent-bright); }
+
+  /* TOP NAV */
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topnav-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Newsreader', serif; font-weight: 500; font-size: 17px;
+    letter-spacing: 0.2px; color: var(--text);
+  }
+  .nav-brand-glyph { width: 22px; height: 22px; color: var(--accent); }
+  .nav-section {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px;
+  }
+  .nav-links { display: flex; align-items: center; gap: 24px; font-size: 14px; color: var(--text-dim); }
+  .nav-links a { transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* BREADCRUMB */
+  .breadcrumb {
+    max-width: var(--max-text); margin: 0 auto;
+    padding: 20px 24px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
+  }
+  .breadcrumb a { transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .breadcrumb .sep { color: var(--text-dimmer); margin: 0 8px; }
+  .breadcrumb .current { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    max-width: var(--max-text); margin: 0 auto;
+    padding: 48px 24px 32px;
+  }
+  .hero-status-row {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .hero h1 {
+    font-family: 'Newsreader', serif; font-weight: 500;
+    font-size: clamp(36px, 5vw, 52px);
+    letter-spacing: -0.6px; color: var(--text);
+    line-height: 1.08;
+  }
+  .hero-tagline {
+    font-family: 'Newsreader', serif; font-weight: 400; font-style: italic;
+    font-size: 21px; color: var(--text-dim);
+    margin-top: 16px; line-height: 1.45;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap;
+  }
+  .pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
+  .pill-progress { background: var(--progress-bg); color: var(--progress); }
+  .pill-progress::before { background: var(--progress); }
+  .pill-live { background: var(--live-bg); color: var(--live); }
+  .pill-live::before { background: var(--live); box-shadow: 0 0 8px var(--live); }
+
+  /* CONTENT SECTIONS */
+  .content {
+    max-width: var(--max-text); margin: 0 auto;
+    padding: 16px 24px 56px;
+  }
+  .content-section { margin-bottom: 44px; }
+  .content-section:last-child { margin-bottom: 0; }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Newsreader', serif; font-weight: 500;
+    font-size: 28px; letter-spacing: -0.3px;
+    color: var(--text); margin-bottom: 18px; line-height: 1.2;
+  }
+  .prose {
+    font-family: 'Newsreader', serif;
+    font-weight: 400; font-size: 19px;
+    line-height: 1.6; color: var(--text);
+  }
+  .prose p { margin-bottom: 16px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--accent-bright); font-weight: 600; }
+  .prose ul { list-style: none; padding: 0; margin: 14px 0 18px; }
+  .prose ul li {
+    position: relative;
+    padding-left: 22px; margin-bottom: 12px;
+    line-height: 1.55;
+  }
+  .prose ul li::before {
+    content: ''; position: absolute;
+    left: 2px; top: 0.7em;
+    width: 10px; height: 1px;
+    background: var(--accent);
+  }
+  .prose ul li:last-child { margin-bottom: 0; }
+
+  /* DELIVERABLE CARD */
+  .deliverable-card {
+    background: var(--surface);
+    border: 1px solid var(--accent-border);
+    border-radius: 12px;
+    padding: 28px 28px 26px;
+    margin-top: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .deliverable-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .deliverable-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 12px; font-weight: 600;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .deliverable-title {
+    font-family: 'Newsreader', serif; font-weight: 500;
+    font-size: 24px; color: var(--text); margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .deliverable-body {
+    font-family: 'Inter', sans-serif; font-size: 15px;
+    color: var(--text-dim); line-height: 1.6; margin-bottom: 18px;
+  }
+  .deliverable-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 20px;
+    border: 1px solid var(--accent-border);
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .deliverable-cta:hover {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  .deliverable-cta svg { width: 12px; height: 12px; }
+  .deliverable-note {
+    margin-top: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; color: var(--text-dimmer); line-height: 1.55;
+    font-style: italic;
+  }
+
+  .status-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin-top: 8px;
+  }
+  .status-card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 10px; font-weight: 500;
+  }
+  .status-card-body {
+    font-family: 'Newsreader', serif;
+    font-size: 18px; line-height: 1.55; color: var(--text);
+  }
+
+  .discretion {
+    margin-top: 18px; padding: 14px 18px;
+    border-left: 2px solid var(--accent-border);
+    background: var(--accent-soft);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; color: var(--text-dim); line-height: 1.55;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* VERSIONS FOOTER */
+  .versions {
+    max-width: var(--max-text); margin: 0 auto;
+    padding: 32px 24px 56px;
+    border-top: 1px solid var(--border);
+  }
+  .versions-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-dimmer); margin-bottom: 14px; font-weight: 500;
+  }
+  .versions-empty {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--text-dim);
+  }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 48px 24px 36px; }
+  .footer-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    font-size: 12px; color: var(--text-dimmer); font-family: 'JetBrains Mono', monospace;
+  }
+  .footer-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Newsreader', serif; font-size: 16px; color: var(--text-dim);
+    transition: color 0.2s;
+  }
+  .footer-brand:hover { color: var(--accent); }
+  .footer-brand-glyph { width: 18px; height: 18px; color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .topnav-inner { padding: 12px 20px; gap: 12px; }
+    .nav-links { gap: 18px; font-size: 13px; }
+    .breadcrumb { padding: 16px 20px 0; font-size: 12px; }
+    .hero { padding: 36px 20px 24px; }
+    .hero h1 { font-size: 30px; }
+    .hero-tagline { font-size: 18px; }
+    .content { padding: 12px 20px 48px; }
+    .section-title { font-size: 24px; }
+    .prose { font-size: 17px; }
+    .status-card, .deliverable-card { padding: 20px; }
+    .deliverable-title { font-size: 22px; }
+    .status-card-body { font-size: 16px; }
+  }
+  @media (max-width: 480px) {
+    .nav-section { display: none; }
+    .nav-links a:not(:last-child) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="https://nullsetlabs.org/" class="nav-brand" aria-label="Null Set Labs home">
+      <svg class="nav-brand-glyph" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="navSlashGradient" x1="20%" y1="80%" x2="80%" y2="20%">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="100%" stop-color="#c19a5b"/>
+          </linearGradient>
+        </defs>
+        <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <line x1="5.5" y1="18.5" x2="18.5" y2="5.5" stroke="url(#navSlashGradient)" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      Null Set Labs
+    </a>
+    <span class="nav-section">Food Systems</span>
+    <div class="nav-links">
+      <a href="https://food.nullsetlabs.org/">Back to Food Systems</a>
+      <a href="https://nullsetlabs.org/">All pillars</a>
+    </div>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="https://nullsetlabs.org/">Null Set Labs</a>
+  <span class="sep">/</span>
+  <a href="https://food.nullsetlabs.org/">Food Systems and Access</a>
+  <span class="sep">/</span>
+  <span class="current">Community Food Bank Efficiency</span>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-status-row">
+    <span class="pill pill-progress">In Preparation</span>
+  </div>
+  <h1>Community Food Bank Efficiency Project</h1>
+  <p class="hero-tagline">Operational research on local food bank workflows, demand patterns, and economic disparities in community food access.</p>
+</header>
+
+<!-- CONTENT -->
+<main class="content">
+
+  <section class="content-section">
+    <div class="section-label">The Issue</div>
+    <h2 class="section-title">Operational data exists, analysis often does not.</h2>
+    <div class="prose">
+      <p>Food banks collect a lot of operational data. Intake forms capture donations by department and donor. Distribution records capture pounds out, households served, and recipient sites. Most of this data sits in spreadsheets that staff use as ledgers rather than as analytical surfaces.</p>
+      <p>The result is that decisions about <strong>donor outreach, department balance, distribution timing, and inventory holds</strong> are often made without a rigorous read of the data the organization already produces. Demand patterns over time are visible in the records but rarely summarized. Donor concentration is observable but rarely measured. Economic disparities in community food access show up in the distribution data but rarely surface in the form staff and donors actually see.</p>
+      <p>The lab's premise: a food bank's own operational data can answer most of its operational questions, if the analysis surface is built for the data the form actually produces.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="section-label">Source of Data</div>
+    <h2 class="section-title">Intake, donation, and distribution records.</h2>
+    <div class="prose">
+      <p>The research draws on intake forms, donation logs, and distribution records from local Pennsylvania food banks. The intake forms follow a JotForm-style <strong>wide-sparse layout</strong>: each department (produce, dairy, frozen, bakery, canned goods, and so on) fills out only the columns relevant to its work and leaves the rest blank. The same wide-sparse pattern is common across food banks that adopt off-the-shelf form tools.</p>
+      <p>Specific organization names, identifying details, and dataset identifiers are held private. The Pantry Dashboard ships with a synthetic sample workbook of the same shape so the analysis surface is publicly demonstrable without exposing any organization's records.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="section-label">Analysis Method</div>
+    <h2 class="section-title">Schema-aware ingestion, then operational views.</h2>
+    <div class="prose">
+      <p>The analysis layer treats the form's blanks as not-applicable rather than as missing data. Aggregations skip nulls, top-N computations run over rows that actually carry the relevant field, and per-department summaries respect the wide-sparse structure rather than fighting it.</p>
+      <p>On top of that ingestion, the work spans four threads:</p>
+      <ul>
+        <li><strong>Time-series operations.</strong> Monthly totals, rolling means, season-over-season comparison.</li>
+        <li><strong>Donor concentration.</strong> Top-N share, repeat-donor rates, donor-type breakdowns.</li>
+        <li><strong>Distribution analysis.</strong> Per-site pounds and households, intake-to-distribution gap.</li>
+        <li><strong>Audience-aware presentation.</strong> The same data shown differently to staff, board, donors, and the public, with privacy-preserving transformations applied per audience.</li>
+      </ul>
+      <p>The dashboard runs entirely client-side in the browser. No part of the file is uploaded. Close the tab and the file is gone.</p>
+      <div class="discretion">
+        Specific findings, organization-level results, and unpublished operational conclusions are held for direct conversations with collaborators. This page is a public concept overview, not a results document.
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="section-label">How We Are Solving It</div>
+    <h2 class="section-title">The Pantry Dashboard.</h2>
+    <div class="prose">
+      <p>The public deliverable of this research project is the <strong>Pantry Dashboard</strong>: a browser-based, audience-aware operational dashboard tailored for food bank workflows. The dashboard reads an intake spreadsheet in any layout, auto-detects roles for common header patterns, and builds seven operational views around the data: monthly overview, departments, donor concentration, distribution, trends, side-by-side comparison, and a row-level raw data view.</p>
+      <p>An audience toggle in the header switches between staff, board, donors, and public modes. The toggle drives which views appear, which columns are visible, and whether identifiers are anonymized. The mapping is configurable, so any food bank can adapt it to its own reporting policies without changing code structure.</p>
+    </div>
+
+    <div class="deliverable-card">
+      <div class="deliverable-label">
+        <span>Public deliverable</span>
+        <span class="pill pill-live">Live</span>
+      </div>
+      <div class="deliverable-title">Pantry Dashboard</div>
+      <div class="deliverable-body">A browser-based, audience-aware dashboard for food bank intake and distribution data. Wide-sparse layouts welcome. Data stays on your device. Open-source under CC BY-NC 4.0.</div>
+      <a class="deliverable-cta" href="https://nullsetlabs.org/foodbank-dashboard/">
+        Open the dashboard
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+      </a>
+      <p class="deliverable-note">For research and exploratory purposes only. Not a substitute for operational decision-making without independent verification.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="section-label">What This Means</div>
+    <h2 class="section-title">For the scientific community.</h2>
+    <div class="prose">
+      <p>An audience-aware operational layer for food bank data has three audiences. For food bank staff, it makes routine operational questions answerable without exporting to a paid BI tool: which donors carry the month, where the distribution gap sits, how households served are trending. For donors and boards, it gives the same picture in a privacy-respecting view that does not expose identifiers. For researchers studying community food systems, the surfaced demand and access patterns inform donor strategy and community-level policy in ways that the raw spreadsheet cannot.</p>
+      <p>The open-source release makes the same capability available to any food bank without a license fee. Any organization with a similar intake spreadsheet can use it without modification; the column-detection logic recognizes common header patterns and assigns roles automatically.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="section-label">Status</div>
+    <h2 class="section-title">Where things stand.</h2>
+    <div class="status-card">
+      <div class="status-card-label">Current status</div>
+      <p class="status-card-body">In preparation. The Pantry Dashboard is publicly available as the research project's first deliverable. Subsequent research outputs are pending.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- VERSIONS -->
+<section class="versions" aria-label="Versions">
+  <div class="versions-label">Versions</div>
+  <div class="versions-empty">No public releases yet. The Pantry Dashboard is the project's first public deliverable.</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="https://nullsetlabs.org/" class="footer-brand">
+      <svg class="footer-brand-glyph" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="footerSlashGradient" x1="20%" y1="80%" x2="80%" y2="20%">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="100%" stop-color="#c19a5b"/>
+          </linearGradient>
+        </defs>
+        <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <line x1="5.5" y1="18.5" x2="18.5" y2="5.5" stroke="url(#footerSlashGradient)" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      Null Set Labs
+    </a>
+    <div>&copy; 2026 Null Set Labs &middot; food.nullsetlabs.org/community-food-bank</div>
+  </div>
+</footer>
+
+<!-- Cloudflare Web Analytics - replace TBD-FOOD-TOKEN with the token issued for food.nullsetlabs.org once the Cloudflare Web Analytics property is registered -->
+<!-- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "TBD-FOOD-TOKEN"}'></script> -->
+<!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>
