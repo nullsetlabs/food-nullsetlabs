@@ -277,6 +277,36 @@
     border-radius: 0 6px 6px 0;
   }
 
+  /* Sub-bullet block, used for scannable framing inside a section */
+  .how-block {
+    margin: 22px 0 8px; padding: 26px 28px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: rgba(193, 154, 91, 0.04);
+  }
+  .how-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px; font-weight: 500;
+  }
+  .how-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .how-list li {
+    position: relative; padding-left: 26px;
+    font-family: 'Newsreader', serif; font-size: 18px;
+    line-height: 1.55; color: var(--text);
+  }
+  .how-list li::before {
+    content: ''; position: absolute;
+    left: 4px; top: 0.72em;
+    width: 12px; height: 1px; background: var(--accent);
+  }
+  .how-list strong { font-weight: 600; color: var(--accent-bright); }
+
+  /* Hero accent glyph */
+  .hero-accent {
+    display: block; margin-bottom: 18px;
+    color: var(--accent);
+  }
+
   /* VERSIONS FOOTER */
   .versions {
     max-width: var(--max-text); margin: 0 auto;
@@ -329,6 +359,9 @@
     .deliverable-cta { padding: 12px 20px; min-height: 44px; font-size: 12px; }
     .status-card-body { font-size: 16px; }
     .discretion { font-size: 13.5px; }
+    .how-block { padding: 22px 20px; }
+    .how-list li { font-size: 16px; }
+    .hero-accent svg { width: 40px; height: 40px; }
     footer { padding: 40px 18px 32px; }
     .footer-inner { text-align: center; justify-content: center; }
   }
@@ -405,11 +438,29 @@
 
   <section class="content-section">
     <div class="section-label">The Issue</div>
+    <div class="hero-accent" aria-hidden="true">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="9" y="9" width="30" height="30" rx="3" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M9 18 H39" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M18 18 V39" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M22 26 H34" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M22 31 H30" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="13.5" cy="13.5" r="1" fill="currentColor"/>
+      </svg>
+    </div>
     <h2 class="section-title">Operational data exists, analysis often does not.</h2>
     <div class="prose">
       <p>Food banks collect a lot of operational data. Intake forms capture donations by department and donor. Distribution records capture pounds out, households served, and recipient sites. Most of this data sits in spreadsheets that staff use as ledgers rather than as analytical surfaces.</p>
-      <p>The result is that decisions about <strong>donor outreach, department balance, distribution timing, and inventory holds</strong> are often made without a rigorous read of the data the organization already produces. Demand patterns over time are visible in the records but rarely summarized. Donor concentration is observable but rarely measured. Economic disparities in community food access show up in the distribution data but rarely surface in the form staff and donors actually see.</p>
       <p>The lab's premise: a food bank's own operational data can answer most of its operational questions, if the analysis surface is built for the data the form actually produces.</p>
+      <div class="how-block">
+        <div class="how-label">What sits in the data, unread</div>
+        <ul class="how-list">
+          <li><strong>Donor concentration is observable but rarely measured.</strong> Top-N donor share and repeat-donor rates are recoverable from the intake log without additional collection.</li>
+          <li><strong>Demand patterns over time are visible but rarely summarized.</strong> Monthly totals, rolling means, and season-over-season comparison sit latent in distribution records.</li>
+          <li><strong>Economic disparities in access show up in distribution data.</strong> Per-site pounds, households served, and the intake-to-distribution gap rarely surface in the form staff and donors actually see.</li>
+          <li><strong>Decisions get made without a rigorous read.</strong> Donor outreach, department balance, distribution timing, and inventory holds usually run on memory rather than on a summary of the organization's own records.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -468,8 +519,16 @@
     <div class="section-label">What This Means</div>
     <h2 class="section-title">For the scientific community.</h2>
     <div class="prose">
-      <p>An audience-aware operational layer for food bank data has three audiences. For food bank staff, it makes routine operational questions answerable without exporting to a paid BI tool: which donors carry the month, where the distribution gap sits, how households served are trending. For donors and boards, it gives the same picture in a privacy-respecting view that does not expose identifiers. For researchers studying community food systems, the surfaced demand and access patterns inform donor strategy and community-level policy in ways that the raw spreadsheet cannot.</p>
-      <p>The open-source release makes the same capability available to any food bank without a license fee. Any organization with a similar intake spreadsheet can use it without modification; the column-detection logic recognizes common header patterns and assigns roles automatically.</p>
+      <p>An audience-aware operational layer for food bank data serves staff, boards, donors, and researchers studying community food systems. The same dataset reads differently to each audience, and the dashboard makes that variance explicit rather than hiding it behind a single default view.</p>
+      <div class="how-block">
+        <div class="how-label">What this work means</div>
+        <ul class="how-list">
+          <li><strong>Who benefits.</strong> Staff get routine operational questions answered without a paid BI tool. Boards and donors see the same picture in a privacy-respecting view that does not expose identifiers. Researchers gain a surfaced read on demand and access patterns that the raw spreadsheet cannot show.</li>
+          <li><strong>What is open.</strong> The Pantry Dashboard is publicly available under CC BY-NC 4.0. The column-detection logic, the audience-toggle mapping, and a synthetic sample workbook are all part of the public release, so any organization with a similar intake form can use it without modification.</li>
+          <li><strong>What is held.</strong> Specific findings, organization-level results, and unpublished operational conclusions are reserved for direct conversations with collaborators ahead of publication. No partner records or identifiers are exposed by the public tool.</li>
+          <li><strong>What comes next.</strong> The research write-up is in preparation. The dashboard's audience-aware framing will be extended as further partner organizations confirm their reporting policies.</li>
+        </ul>
+      </div>
     </div>
   </section>
 

@@ -207,6 +207,79 @@
   .pill-progress { background: var(--progress-bg); color: var(--progress); }
   .pill-progress::before { background: var(--progress); }
 
+  /* Currently active strip */
+  .active-strip-wrap { max-width: var(--max-width); margin: 0 auto; padding: 8px 24px 0; }
+  .active-strip {
+    display: flex; flex-wrap: wrap; gap: 14px;
+    padding: 14px 18px;
+    border: 1px solid var(--border); border-radius: 10px;
+    background: rgba(193, 154, 91, 0.04);
+  }
+  .active-item {
+    display: flex; align-items: center; gap: 10px;
+    flex: 1; min-width: 220px;
+    font-size: 13px; color: var(--text-dim);
+    font-family: 'Inter', sans-serif;
+  }
+  .active-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--live); box-shadow: 0 0 8px var(--live);
+    flex-shrink: 0;
+  }
+  .active-item strong { color: var(--text); font-weight: 600; }
+  .active-item-soft .active-dot {
+    background: var(--progress); box-shadow: 0 0 8px var(--progress);
+  }
+
+  /* How the work runs (sub-bullet block) */
+  .how-block {
+    margin: 24px 0 0;
+    padding: 24px 26px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: rgba(193, 154, 91, 0.04);
+  }
+  .how-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .how-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .how-list li {
+    position: relative; padding-left: 24px;
+    font-family: 'Newsreader', serif; font-size: 17px;
+    line-height: 1.55; color: var(--text);
+  }
+  .how-list li::before {
+    content: ''; position: absolute; left: 4px; top: 0.72em;
+    width: 12px; height: 1px; background: var(--accent);
+  }
+  .how-list strong { font-weight: 600; color: var(--accent-bright); }
+
+  /* Why this research section */
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .why-card {
+    padding: 26px 24px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: var(--surface);
+    display: flex; flex-direction: column; gap: 12px;
+    transition: border-color 0.2s;
+  }
+  .why-card:hover { border-color: var(--accent-border); }
+  .why-icon { width: 32px; height: 32px; color: var(--accent); }
+  .why-card-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .why-card-heading {
+    font-family: 'Newsreader', serif;
+    font-size: 21px; font-weight: 500; letter-spacing: -0.2px;
+    color: var(--text); line-height: 1.25;
+  }
+  .why-card-body { font-size: 15px; line-height: 1.6; color: var(--text-dim); }
+  .why-card-body strong { color: var(--accent-bright); font-weight: 600; }
+
   /* FOOTER */
   footer { border-top: 1px solid var(--border); padding: 48px 24px 36px; }
   .footer-inner {
@@ -223,6 +296,10 @@
   .footer-brand:hover { color: var(--accent); }
   .footer-brand-glyph { width: 18px; height: 18px; color: var(--accent); }
 
+  @media (max-width: 900px) {
+    .why-grid { grid-template-columns: 1fr; gap: 16px; }
+    .why-card { padding: 22px 20px; }
+  }
   @media (max-width: 768px) {
     .topnav-inner { padding: 12px 16px; gap: 10px; flex-wrap: wrap; }
     .nav-brand { font-size: 16px; }
@@ -240,6 +317,12 @@
     .project-name { font-size: 20px; }
     .project-subtitle { font-size: 15px; }
     .project-meta { min-height: 44px; align-items: center; }
+    .active-strip-wrap { padding: 4px 18px 0; }
+    .active-strip { padding: 12px 14px; }
+    .active-item { font-size: 12px; }
+    .how-block { padding: 20px 20px; }
+    .how-list li { font-size: 16px; }
+    .why-card-heading { font-size: 19px; }
     footer { padding: 40px 18px 32px; }
     .footer-inner { text-align: center; justify-content: center; }
   }
@@ -281,6 +364,7 @@
     <span class="nav-section">Food Systems</span>
     <div class="nav-links">
       <a href="#projects">Projects</a>
+      <a href="#why">Why</a>
       <a href="https://nullsetlabs.org/">Back to nullsetlabs.org</a>
     </div>
   </div>
@@ -296,14 +380,41 @@
   <div class="hero-eyebrow">Research at Null Set Labs</div>
   <h1>Food Systems and Access</h1>
   <p class="hero-tagline">Research and tools for nutritional quality, community food systems, and the economics of food access.</p>
-  <p class="hero-body">This area of the lab focuses on what people eat and how food reaches them. Two projects currently sit here: a multi-source nutritional quality classifier built on published front-of-pack methods, and an operational research project on local food bank efficiency with a public-facing dashboard as its first deliverable.</p>
+  <p class="hero-body">The lab studies what people eat and how food reaches them, and builds tools that food banks and community programs can actually use.</p>
 </header>
+
+<!-- CURRENTLY ACTIVE STRIP -->
+<div class="active-strip-wrap">
+  <div class="active-strip" aria-label="Currently active">
+    <div class="active-item">
+      <span class="active-dot" aria-hidden="true"></span>
+      <span><strong>Pantry Dashboard</strong> &middot; public, for community pilots</span>
+    </div>
+    <div class="active-item active-item-soft">
+      <span class="active-dot" aria-hidden="true"></span>
+      <span><strong>NutriScan</strong> &middot; concept in preparation</span>
+    </div>
+    <div class="active-item active-item-soft">
+      <span class="active-dot" aria-hidden="true"></span>
+      <span><strong>Community Food Bank Efficiency</strong> &middot; research in preparation</span>
+    </div>
+  </div>
+</div>
 
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-label">Projects</div>
   <h2 class="section-title">Where the community food research is happening.</h2>
-  <div class="projects">
+  <div class="how-block" aria-label="How this page is organized">
+    <div class="how-label">How this page is organized</div>
+    <ul class="how-list">
+      <li><strong>NutriScan.</strong> A multi-source nutritional quality classifier built on published front-of-pack methods such as Nutri-Score, NOVA, and the UK FSA traffic-light system.</li>
+      <li><strong>Community Food Bank Efficiency.</strong> Operational research on local food bank workflows, demand patterns, and economic disparities in access.</li>
+      <li><strong>Pantry Dashboard.</strong> The first public deliverable from the food bank research, intended for community pilots.</li>
+      <li><strong>Built to be used.</strong> Tools are designed for food bank operations staff, not just for a paper.</li>
+    </ul>
+  </div>
+  <div class="projects" style="margin-top: 28px;">
 
     <a class="project-card" href="https://food.nullsetlabs.org/nutriscan/">
       <div class="project-visual">
@@ -385,6 +496,48 @@
         </div>
       </div>
     </a>
+
+  </div>
+</section>
+
+<!-- WHY THIS RESEARCH -->
+<section id="why">
+  <div class="section-label">Why this research</div>
+  <h2 class="section-title">Open methods, where decisions about hunger relief get made.</h2>
+  <div class="why-grid">
+
+    <div class="why-card">
+      <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M3 12h18"/>
+        <path d="M12 3a14 14 0 0 1 4 9 14 14 0 0 1-4 9 14 14 0 0 1-4-9 14 14 0 0 1 4-9z"/>
+      </svg>
+      <div class="why-card-title">Why open tools</div>
+      <div class="why-card-heading">Decisions made on data, not on intuition.</div>
+      <p class="why-card-body">Decisions about hunger relief, food access, and pantry capacity often rely on instinct rather than measurement. The lab builds <strong>models food banks can audit and improve</strong>, with the methodology published alongside the result.</p>
+    </div>
+
+    <div class="why-card">
+      <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      <div class="why-card-title">Who it's for</div>
+      <div class="why-card-heading">Operations staff, researchers, community programs.</div>
+      <p class="why-card-body">Food bank operations staff making capacity and routing decisions. Public health researchers reviewing methodology. Community programs running their own pilots. Students learning <strong>food-systems analytics on real data</strong>.</p>
+    </div>
+
+    <div class="why-card">
+      <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      <div class="why-card-title">What's open vs. held</div>
+      <div class="why-card-heading">Tools out, partners and findings held.</div>
+      <p class="why-card-body">Tools and methodology are released openly. <strong>Pre-publication research</strong>, partner organization names, and unreleased findings stay private until the appropriate point of disclosure, in line with research agreements and community trust.</p>
+    </div>
 
   </div>
 </section>

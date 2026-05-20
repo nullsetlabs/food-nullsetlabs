@@ -218,6 +218,36 @@
     border-radius: 0 6px 6px 0;
   }
 
+  /* Sub-bullet block, used for scannable framing inside a section */
+  .how-block {
+    margin: 22px 0 8px; padding: 26px 28px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: rgba(193, 154, 91, 0.04);
+  }
+  .how-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px; font-weight: 500;
+  }
+  .how-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .how-list li {
+    position: relative; padding-left: 26px;
+    font-family: 'Newsreader', serif; font-size: 18px;
+    line-height: 1.55; color: var(--text);
+  }
+  .how-list li::before {
+    content: ''; position: absolute;
+    left: 4px; top: 0.72em;
+    width: 12px; height: 1px; background: var(--accent);
+  }
+  .how-list strong { font-weight: 600; color: var(--accent-bright); }
+
+  /* Hero accent glyph */
+  .hero-accent {
+    display: block; margin-bottom: 18px;
+    color: var(--accent);
+  }
+
   /* VERSIONS FOOTER */
   .versions {
     max-width: var(--max-text); margin: 0 auto;
@@ -267,6 +297,9 @@
     .status-card { padding: 20px; }
     .status-card-body { font-size: 16px; }
     .discretion { font-size: 13.5px; }
+    .how-block { padding: 22px 20px; }
+    .how-list li { font-size: 16px; }
+    .hero-accent svg { width: 40px; height: 40px; }
     footer { padding: 40px 18px 32px; }
     .footer-inner { text-align: center; justify-content: center; }
   }
@@ -340,10 +373,29 @@
 
   <section class="content-section">
     <div class="section-label">The Issue</div>
+    <div class="hero-accent" aria-hidden="true">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M11 24 H37" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M24 11 V37" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="17" cy="17" r="2" fill="currentColor"/>
+        <circle cx="31" cy="20" r="2" fill="currentColor"/>
+        <circle cx="20" cy="31" r="2" fill="currentColor"/>
+      </svg>
+    </div>
     <h2 class="section-title">Nutritional quality is read differently by every label.</h2>
     <div class="prose">
       <p>Front-of-pack nutrition labels were built independently by different national bodies, on different evidence bases, for different food environments. The same yoghurt can read as a green-light food on one system, a mid-grade letter on another, and an ultra-processed item on a third. For someone trying to compare two foods on a shelf, the labels do not agree, and most consumers see only one of them at a time.</p>
-      <p>The problem compounds when the food is not a Western retail package. Existing rating tools were built around supermarket labels with full nutrient panels and recognizable brand names. They do not handle home-cooked South Asian dishes, regional staples, or foods that move through the supply chain without a barcode. NutriScan is a classifier that brings <strong>three already-public rating systems</strong> together over a database that includes those foods.</p>
+      <p>The problem compounds when the food is not a Western retail package. NutriScan is a classifier that brings <strong>three already-public rating systems</strong> together over a database that includes the foods existing tools tend to miss.</p>
+      <div class="how-block">
+        <div class="how-label">Why this matters</div>
+        <ul class="how-list">
+          <li><strong>Labels disagree at the food level.</strong> The same item can read as healthy on one published scheme and as ultra-processed on another, and consumers usually see only one reading at a time.</li>
+          <li><strong>Coverage is biased toward Western retail.</strong> Existing rating tools were built around supermarket panels and recognizable brand names, and they fall back to guesses on foods that do not arrive in a box.</li>
+          <li><strong>South Asian and home-cooked foods are systematically under-represented.</strong> Regional staples, household dishes, and foods that move through the supply chain without a barcode rarely receive a consistent rating.</li>
+          <li><strong>Integration, not invention.</strong> The methods are all already published. The contribution is to apply them together over a broader database than any single tool currently covers.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -386,8 +438,16 @@
     <div class="section-label">What This Means</div>
     <h2 class="section-title">For the scientific community.</h2>
     <div class="prose">
-      <p>A multi-source view of nutritional quality is useful in three ways. For public-health researchers, it makes the disagreements between national labeling regimes legible at the food level rather than only in policy discussion. For nutrition educators working in mixed-cuisine populations, it provides a tool that does not silently fail on home-cooked dishes. For consumers, it puts three independent readings on the same screen, which is closer to what published evidence says about how food quality should be assessed.</p>
-      <p>The methods are all already published. NutriScan's contribution is integration, coverage, and a public interface that makes the comparison possible.</p>
+      <p>A multi-source view of nutritional quality is useful across three audiences: public-health researchers, nutrition educators working in mixed-cuisine populations, and consumers comparing foods at the point of decision.</p>
+      <div class="how-block">
+        <div class="how-label">What this work means</div>
+        <ul class="how-list">
+          <li><strong>Who benefits.</strong> Researchers gain a food-level read on where national labeling schemes disagree; educators gain a tool that does not silently fail on home-cooked dishes; consumers see three independent readings on a single screen.</li>
+          <li><strong>What is open.</strong> The three underlying methods are all already published. The integration concept, the coverage scope, and a public interface for side-by-side comparison are intended for public release.</li>
+          <li><strong>What is held.</strong> Internal thresholds, the conflict-resolution rules, the curated fallback set, and the validation methodology are reserved for direct conversations with collaborators ahead of publication.</li>
+          <li><strong>What comes next.</strong> Research is in preparation. The classifier and its accompanying methods note will be made available as collaborators confirm the public scope.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
