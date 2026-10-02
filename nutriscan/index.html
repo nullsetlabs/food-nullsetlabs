@@ -403,7 +403,7 @@
     <div class="section-label">Source of Data</div>
     <h2 class="section-title">Public food composition databases.</h2>
     <div class="prose">
-      <p>The classifier draws from public food composition databases that publish nutrient-per-100g values for raw and prepared foods. The reference set spans Western retail packaging data, US public nutrient data, and Indian food composition tables, with global open-product coverage as a fallback. Specific dataset identifiers and the curated fallback set are held for direct conversations with collaborators.</p>
+      <p>The classifier draws from public food composition databases that publish nutrient-per-100g values for raw and prepared foods. The reference set spans Western retail packaging data, US public nutrient data, and Indian food composition tables, with global open-product coverage as a fallback. Specific dataset identifiers and the curated fallback set are held until publication.</p>
       <p>Each food is looked up against the available sources, with conflicts resolved through a fixed precedence and a curated fallback database for foods that are not well-covered by any single source.</p>
     </div>
   </section>
@@ -414,13 +414,13 @@
     <div class="prose">
       <p>NutriScan does not introduce a new scoring method. It combines three peer-reviewed and publicly documented ones over a broader food database than any single tool currently covers:</p>
       <ul>
-        <li><strong>Nutri-Score (A to E).</strong> Front-of-pack nutrition grade developed by Sante Publique France. A is best, E is worst. The algorithm is published.</li>
+        <li><strong>Nutri-Score (A to E).</strong> Front-of-pack nutrition grade developed by Sant&eacute; publique France. A is best, E is worst. The algorithm is published.</li>
         <li><strong>UK FSA traffic-light indicators.</strong> Red, amber, and green markers per serving for fat, saturated fat, sugar, and salt. The thresholds are published by the UK Food Standards Agency.</li>
         <li><strong>NOVA processing level (1 to 4).</strong> Classification of foods by degree of industrial processing, originally developed at the University of Sao Paulo.</li>
       </ul>
       <p>For each food, NutriScan emits all three readings side by side. Where the three disagree, the user sees the disagreement rather than a forced consensus. The classifier's contribution is integration and coverage, not a new judgment about what a food is.</p>
       <div class="discretion">
-        NutriScan's own thresholds, conflict-resolution rules, and validation set are held for direct conversations with collaborators. This page is a public concept overview, not a methods document.
+        NutriScan's own thresholds, conflict-resolution rules, and validation set are held until publication. This page is a public concept overview, not a methods document.
       </div>
     </div>
   </section>
@@ -444,8 +444,8 @@
         <ul class="how-list">
           <li><strong>Who benefits.</strong> Researchers gain a food-level read on where national labeling schemes disagree; educators gain a tool that does not silently fail on home-cooked dishes; consumers see three independent readings on a single screen.</li>
           <li><strong>What is open.</strong> The three underlying methods are all already published. The integration concept, the coverage scope, and a public interface for side-by-side comparison are intended for public release.</li>
-          <li><strong>What is held.</strong> Internal thresholds, the conflict-resolution rules, the curated fallback set, and the validation methodology are reserved for direct conversations with collaborators ahead of publication.</li>
-          <li><strong>What comes next.</strong> Research is in preparation. The classifier and its accompanying methods note will be made available as collaborators confirm the public scope.</li>
+          <li><strong>What is held.</strong> Internal thresholds, the conflict-resolution rules, the curated fallback set, and the validation methodology are held until publication.</li>
+          <li><strong>What comes next.</strong> Research is in preparation. The classifier and its accompanying methods note will be released after publication.</li>
         </ul>
       </div>
     </div>
@@ -456,7 +456,7 @@
     <h2 class="section-title">Where things stand.</h2>
     <div class="status-card">
       <div class="status-card-label">Current status</div>
-      <p class="status-card-body">In preparation. Working prototype under development with faculty collaborators at an international research university. Public release pending.</p>
+      <p class="status-card-body">In preparation. A working prototype has been built and the research is being written up. Public release will follow publication.</p>
     </div>
   </section>
 
@@ -465,7 +465,7 @@
 <!-- VERSIONS -->
 <section class="versions" aria-label="Versions">
   <div class="versions-label">Versions</div>
-  <div class="versions-empty">No public releases yet. This row will list past versions as the project produces them.</div>
+  <div class="versions-empty">No public releases yet.</div>
 </section>
 
 <!-- FOOTER -->
