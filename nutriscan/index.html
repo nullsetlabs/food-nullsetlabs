@@ -42,8 +42,11 @@
 <link rel="alternate icon" type="image/png" sizes="32x32" href="https://nullsetlabs.org/brand-assets/favicons/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="https://nullsetlabs.org/brand-assets/favicons/apple-touch-icon.png">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
   :root {
     --bg: #0a0a0f;
@@ -372,7 +375,7 @@
 <main class="content">
 
   <section class="content-section">
-    <div class="section-label">The Issue</div>
+    <div class="section-label">The issue</div>
     <div class="hero-accent" aria-hidden="true">
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="1.6"/>
@@ -383,7 +386,7 @@
         <circle cx="20" cy="31" r="2" fill="currentColor"/>
       </svg>
     </div>
-    <h2 class="section-title">Nutritional quality is read differently by every label.</h2>
+    <h2 class="section-title">Nutrition labels disagree across rating systems</h2>
     <div class="prose">
       <p>Front-of-pack nutrition labels were built independently by different national bodies, on different evidence bases, for different food environments. The same yoghurt can read as a green-light food on one system, a mid-grade letter on another, and an ultra-processed item on a third. For someone trying to compare two foods on a shelf, the labels do not agree, and most consumers see only one of them at a time.</p>
       <p>The problem compounds when the food is not a Western retail package. NutriScan is a classifier that brings <strong>three already-public rating systems</strong> together over a database that includes the foods existing tools tend to miss.</p>
@@ -400,8 +403,8 @@
   </section>
 
   <section class="content-section">
-    <div class="section-label">Source of Data</div>
-    <h2 class="section-title">Public food composition databases.</h2>
+    <div class="section-label">Source of data</div>
+    <h2 class="section-title">Public food composition databases</h2>
     <div class="prose">
       <p>The classifier draws from public food composition databases that publish nutrient-per-100g values for raw and prepared foods. The reference set spans Western retail packaging data, US public nutrient data, and Indian food composition tables, with global open-product coverage as a fallback. Specific dataset identifiers and the curated fallback set are held until publication.</p>
       <p>Each food is looked up against the available sources, with conflicts resolved through a fixed precedence and a curated fallback database for foods that are not well-covered by any single source.</p>
@@ -409,14 +412,14 @@
   </section>
 
   <section class="content-section">
-    <div class="section-label">Analysis Method</div>
-    <h2 class="section-title">Three published rating systems, applied in parallel.</h2>
+    <div class="section-label">Analysis method</div>
+    <h2 class="section-title">Three published rating systems, applied in parallel</h2>
     <div class="prose">
-      <p>NutriScan does not introduce a new scoring method. It combines three peer-reviewed and publicly documented ones over a broader food database than any single tool currently covers:</p>
+      <p>NutriScan does not introduce a new scoring method. It combines three peer-reviewed and publicly documented ones:</p>
       <ul>
         <li><strong>Nutri-Score (A to E).</strong> Front-of-pack nutrition grade developed by Sant&eacute; publique France. A is best, E is worst. The algorithm is published.</li>
         <li><strong>UK FSA traffic-light indicators.</strong> Red, amber, and green markers per serving for fat, saturated fat, sugar, and salt. The thresholds are published by the UK Food Standards Agency.</li>
-        <li><strong>NOVA processing level (1 to 4).</strong> Classification of foods by degree of industrial processing, originally developed at the University of Sao Paulo.</li>
+        <li><strong>NOVA processing level (1 to 4).</strong> Classification of foods by degree of industrial processing, originally developed at the University of S&atilde;o Paulo.</li>
       </ul>
       <p>For each food, NutriScan emits all three readings side by side. Where the three disagree, the user sees the disagreement rather than a forced consensus. The classifier's contribution is integration and coverage, not a new judgment about what a food is.</p>
       <div class="discretion">
@@ -426,8 +429,8 @@
   </section>
 
   <section class="content-section">
-    <div class="section-label">How We Are Solving It</div>
-    <h2 class="section-title">A classifier that works on dal as cleanly as on cereal.</h2>
+    <div class="section-label">Approach</div>
+    <h2 class="section-title">One classifier for packaged, Indian and home-cooked foods</h2>
     <div class="prose">
       <p>Coverage of Indian and home-cooked foods is a deliberate scope choice. Most existing nutrition-rating tools were built around Western retail packaging, and they fall back to "unknown" or guess wrong on dishes that do not arrive in a box. NutriScan is built to close that gap by combining multiple food composition sources and a curated fallback set for common dishes that are otherwise poorly covered.</p>
       <p>The tool is designed to be used at the point of decision: search a food by name, scan a barcode where one exists, and see a composite reading that names which system said what. Where a food is not covered by any source, the tool says so rather than guessing.</p>
@@ -435,8 +438,8 @@
   </section>
 
   <section class="content-section">
-    <div class="section-label">What This Means</div>
-    <h2 class="section-title">For the scientific community.</h2>
+    <div class="section-label">What this means</div>
+    <h2 class="section-title">Who it is for</h2>
     <div class="prose">
       <p>A multi-source view of nutritional quality is useful across three audiences: public-health researchers, nutrition educators working in mixed-cuisine populations, and consumers comparing foods at the point of decision.</p>
       <div class="how-block">
@@ -453,7 +456,7 @@
 
   <section class="content-section">
     <div class="section-label">Status</div>
-    <h2 class="section-title">Where things stand.</h2>
+    <h2 class="section-title">Current status</h2>
     <div class="status-card">
       <div class="status-card-label">Current status</div>
       <p class="status-card-body">In preparation. A working prototype has been built and the research is being written up. Public release will follow publication.</p>

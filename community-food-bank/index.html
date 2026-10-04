@@ -42,8 +42,11 @@
 <link rel="alternate icon" type="image/png" sizes="32x32" href="https://nullsetlabs.org/brand-assets/favicons/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="https://nullsetlabs.org/brand-assets/favicons/apple-touch-icon.png">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
   :root {
     --bg: #0a0a0f;
@@ -437,7 +440,7 @@
 <main class="content">
 
   <section class="content-section">
-    <div class="section-label">The Issue</div>
+    <div class="section-label">The issue</div>
     <div class="hero-accent" aria-hidden="true">
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="9" y="9" width="30" height="30" rx="3" stroke="currentColor" stroke-width="1.6"/>
@@ -448,7 +451,7 @@
         <circle cx="13.5" cy="13.5" r="1" fill="currentColor"/>
       </svg>
     </div>
-    <h2 class="section-title">Operational data exists, analysis often does not.</h2>
+    <h2 class="section-title">Food bank data that goes unanalyzed</h2>
     <div class="prose">
       <p>Food banks collect a lot of operational data. Intake forms capture donations by department and donor. Distribution records capture pounds out, households served, and recipient sites. Most of this data sits in spreadsheets that staff use as ledgers rather than as analytical surfaces.</p>
       <p>The lab's premise: a food bank's own operational data can answer most of its operational questions, if the analysis surface is built for the data the form actually produces.</p>
@@ -465,8 +468,8 @@
   </section>
 
   <section class="content-section">
-    <div class="section-label">Source of Data</div>
-    <h2 class="section-title">Intake, donation, and distribution records.</h2>
+    <div class="section-label">Source of data</div>
+    <h2 class="section-title">Intake, donation, and distribution records</h2>
     <div class="prose">
       <p>The research draws on intake forms, donation logs, and distribution records from local Pennsylvania food banks. The intake forms follow a JotForm-style <strong>wide-sparse layout</strong>: each department (produce, dairy, frozen, bakery, canned goods, and so on) fills out only the columns relevant to its work and leaves the rest blank. The same wide-sparse pattern is common across food banks that adopt off-the-shelf form tools.</p>
       <p>Specific organization names, identifying details, and dataset identifiers are held private. The Pantry Dashboard ships with a synthetic sample workbook of the same shape so the analysis surface is publicly demonstrable without exposing any organization's records.</p>
@@ -474,8 +477,8 @@
   </section>
 
   <section class="content-section">
-    <div class="section-label">Analysis Method</div>
-    <h2 class="section-title">Schema-aware ingestion, then operational views.</h2>
+    <div class="section-label">Analysis method</div>
+    <h2 class="section-title">Schema-aware ingestion, then operational views</h2>
     <div class="prose">
       <p>The analysis layer treats the form's blanks as not-applicable rather than as missing data. Aggregations skip nulls, top-N computations run over rows that actually carry the relevant field, and per-department summaries respect the wide-sparse structure rather than fighting it.</p>
       <p>On top of that ingestion, the work spans four threads:</p>
@@ -487,14 +490,14 @@
       </ul>
       <p>The dashboard runs entirely client-side in the browser. No part of the file is uploaded. Close the tab and the file is gone.</p>
       <div class="discretion">
-        Specific findings, organization-level results, and unpublished operational conclusions are held for direct conversations with collaborators. This page is a public concept overview, not a results document.
+        Specific findings, organization-level results, and unpublished operational conclusions are held until publication. This page is a public concept overview, not a results document.
       </div>
     </div>
   </section>
 
   <section class="content-section">
-    <div class="section-label">How We Are Solving It</div>
-    <h2 class="section-title">The Pantry Dashboard.</h2>
+    <div class="section-label">Approach</div>
+    <h2 class="section-title">The Pantry Dashboard</h2>
     <div class="prose">
       <p>The public deliverable of this research project is the <strong>Pantry Dashboard</strong>: a browser-based, audience-aware operational dashboard tailored for food bank workflows. The dashboard reads an intake spreadsheet in any layout, auto-detects roles for common header patterns, and builds seven operational views around the data: monthly overview, departments, donor concentration, distribution, trends, side-by-side comparison, and a row-level raw data view.</p>
       <p>An audience toggle in the header switches between staff, board, donors, and public modes. The toggle drives which views appear, which columns are visible, and whether identifiers are anonymized. The mapping is configurable, so any food bank can adapt it to its own reporting policies without changing code structure.</p>
@@ -516,8 +519,8 @@
   </section>
 
   <section class="content-section">
-    <div class="section-label">What This Means</div>
-    <h2 class="section-title">For the scientific community.</h2>
+    <div class="section-label">What this means</div>
+    <h2 class="section-title">Who it is for</h2>
     <div class="prose">
       <p>An audience-aware operational layer for food bank data serves staff, boards, donors, and researchers studying community food systems. The same dataset reads differently to each audience, and the dashboard makes that variance explicit rather than hiding it behind a single default view.</p>
       <div class="how-block">
@@ -525,8 +528,8 @@
         <ul class="how-list">
           <li><strong>Who benefits.</strong> Staff get routine operational questions answered without a paid BI tool. Boards and donors see the same picture in a privacy-respecting view that does not expose identifiers. Researchers gain a surfaced read on demand and access patterns that the raw spreadsheet cannot show.</li>
           <li><strong>What is open.</strong> The Pantry Dashboard is publicly available under CC BY-NC 4.0. The column-detection logic, the audience-toggle mapping, and a synthetic sample workbook are all part of the public release, so any organization with a similar intake form can use it without modification.</li>
-          <li><strong>What is held.</strong> Specific findings, organization-level results, and unpublished operational conclusions are reserved for direct conversations with collaborators ahead of publication. No partner records or identifiers are exposed by the public tool.</li>
-          <li><strong>What comes next.</strong> The research write-up is in preparation. The dashboard's audience-aware framing will be extended as further partner organizations confirm their reporting policies.</li>
+          <li><strong>What is held.</strong> Specific findings, organization-level results, and unpublished operational conclusions are held until publication. No partner records or identifiers are exposed by the public tool.</li>
+          <li><strong>What comes next.</strong> The research write-up is in preparation.</li>
         </ul>
       </div>
     </div>
@@ -534,7 +537,7 @@
 
   <section class="content-section">
     <div class="section-label">Status</div>
-    <h2 class="section-title">Where things stand.</h2>
+    <h2 class="section-title">Current status</h2>
     <div class="status-card">
       <div class="status-card-label">Current status</div>
       <p class="status-card-body">In preparation. The Pantry Dashboard is publicly available as the research project's first deliverable. Subsequent research outputs are pending.</p>
@@ -546,7 +549,7 @@
 <!-- VERSIONS -->
 <section class="versions" aria-label="Versions">
   <div class="versions-label">Versions</div>
-  <div class="versions-empty">No public releases yet. The Pantry Dashboard is the project's first public deliverable.</div>
+  <div class="versions-empty">v1.0, May 2026: Pantry Dashboard, live at <a href="https://nullsetlabs.org/foodbank-dashboard/">nullsetlabs.org/foodbank-dashboard</a>.</div>
 </section>
 
 <!-- FOOTER -->

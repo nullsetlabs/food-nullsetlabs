@@ -42,8 +42,11 @@
 <link rel="alternate icon" type="image/png" sizes="32x32" href="https://nullsetlabs.org/brand-assets/favicons/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="https://nullsetlabs.org/brand-assets/favicons/apple-touch-icon.png">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
   :root {
     --bg: #0a0a0f;
@@ -162,7 +165,8 @@
   }
 
   /* PROJECT CARDS */
-  .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 1000px) { .projects { grid-template-columns: repeat(2, 1fr); } }
   .project-card {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 12px; transition: all 0.25s ease;
@@ -367,7 +371,7 @@
     <span class="nav-section">Food Systems</span>
     <div class="nav-links">
       <a href="#projects">Projects</a>
-      <a href="#why">Why</a>
+      <a href="#why">Status</a>
       <a href="https://nullsetlabs.org/">Back to nullsetlabs.org</a>
     </div>
   </div>
@@ -383,7 +387,7 @@
   <div class="hero-eyebrow">Research at Null Set Labs</div>
   <h1>Food Systems and Access</h1>
   <p class="hero-tagline">Research and tools for nutritional quality, community food systems, and the economics of food access.</p>
-  <p class="hero-body">The lab studies what people eat and how food reaches them, and builds tools that food banks and community programs can actually use.</p>
+  <p class="hero-body">The lab studies what people eat and how food reaches them, and builds tools that food banks and community programs can use.</p>
 </header>
 
 <!-- CURRENTLY ACTIVE STRIP -->
@@ -391,15 +395,15 @@
   <div class="active-strip" aria-label="Currently active">
     <div class="active-item">
       <span class="active-dot" aria-hidden="true"></span>
-      <span><strong>Pantry Dashboard</strong> &middot; public for pilots</span>
+      <span><a href="https://nullsetlabs.org/foodbank-dashboard/"><strong>Pantry Dashboard</strong></a> &middot; live tool</span>
     </div>
     <div class="active-item active-item-soft">
       <span class="active-dot" aria-hidden="true"></span>
-      <span><strong>NutriScan</strong> &middot; concept in preparation</span>
+      <span><a href="https://food.nullsetlabs.org/nutriscan/"><strong>NutriScan</strong></a> &middot; in preparation</span>
     </div>
     <div class="active-item active-item-soft">
       <span class="active-dot" aria-hidden="true"></span>
-      <span><strong>Food Bank Efficiency</strong> &middot; research in preparation</span>
+      <span><a href="https://food.nullsetlabs.org/community-food-bank/"><strong>Food Bank Efficiency</strong></a> &middot; in preparation</span>
     </div>
   </div>
 </div>
@@ -407,17 +411,43 @@
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-label">Projects</div>
-  <h2 class="section-title">Where the community food research is happening.</h2>
-  <div class="how-block" aria-label="How this page is organized">
-    <div class="how-label">How this page is organized</div>
-    <ul class="how-list">
-      <li><strong>NutriScan.</strong> A multi-source nutritional quality classifier built on published front-of-pack methods such as Nutri-Score, NOVA, and the UK FSA traffic-light system.</li>
-      <li><strong>Community Food Bank Efficiency.</strong> Operational research on local food bank workflows, demand patterns, and economic disparities in access.</li>
-      <li><strong>Pantry Dashboard.</strong> The first public deliverable from the food bank research, intended for community pilots.</li>
-      <li><strong>Built to be used.</strong> Tools are designed for food bank operations staff, not just for a paper.</li>
-    </ul>
-  </div>
-  <div class="projects" style="margin-top: 28px;">
+  <h2 class="section-title">Key projects in food systems and access</h2>
+  <div class="projects">
+
+    <a class="project-card" href="https://nullsetlabs.org/foodbank-dashboard/">
+      <div class="project-visual">
+        <svg viewBox="0 0 280 158" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <g fill="none" stroke="#26262f" stroke-width="1">
+            <rect x="28" y="34" width="224" height="96" rx="6"/>
+            <line x1="28" y1="54" x2="252" y2="54"/>
+          </g>
+          <rect x="40" y="64" width="56" height="26" rx="4" fill="#c19a5b" opacity="0.18" stroke="#c19a5b" stroke-width="1"/>
+          <rect x="104" y="64" width="56" height="26" rx="4" fill="#c19a5b" opacity="0.12" stroke="#c19a5b" stroke-width="1" stroke-opacity="0.6"/>
+          <rect x="168" y="64" width="72" height="56" rx="4" fill="none" stroke="#c19a5b" stroke-width="1" stroke-opacity="0.6"/>
+          <path d="M 176 110 L 192 98 L 208 102 L 224 84 L 234 88" fill="none" stroke="#c19a5b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="40" y="98" width="10" height="14" fill="#c19a5b" opacity="0.5"/>
+          <rect x="56" y="94" width="10" height="18" fill="#c19a5b" opacity="0.65"/>
+          <rect x="72" y="100" width="10" height="12" fill="#c19a5b" opacity="0.45"/>
+          <rect x="88" y="92" width="10" height="20" fill="#c19a5b" opacity="0.8"/>
+          <rect x="104" y="96" width="10" height="16" fill="#c19a5b" opacity="0.6"/>
+          <rect x="120" y="90" width="10" height="22" fill="#c19a5b"/>
+          <rect x="136" y="98" width="10" height="14" fill="#c19a5b" opacity="0.5"/>
+          <circle cx="40" cy="44" r="3" fill="#c19a5b"/>
+          <circle cx="50" cy="44" r="3" fill="#c19a5b" opacity="0.6"/>
+          <circle cx="60" cy="44" r="3" fill="#c19a5b" opacity="0.35"/>
+        </svg>
+      </div>
+      <div class="project-content">
+        <div class="project-card-header">
+          <div class="project-name">Pantry Dashboard</div>
+          <span class="pill pill-live">Live</span>
+        </div>
+        <p class="project-subtitle">Browser dashboard that turns a food bank's intake spreadsheet into operational views. Free to use, with a synthetic sample workbook.</p>
+        <div class="project-meta">
+          <span class="project-link">nullsetlabs.org/foodbank-dashboard</span>
+        </div>
+      </div>
+    </a>
 
     <a class="project-card" href="https://food.nullsetlabs.org/nutriscan/">
       <div class="project-visual">
@@ -505,8 +535,8 @@
 
 <!-- WHY THIS RESEARCH -->
 <section id="why">
-  <div class="section-label">Why this research</div>
-  <h2 class="section-title">Where the food work is showing up.</h2>
+  <div class="section-label">Status</div>
+  <h2 class="section-title">Applications and current status</h2>
   <div class="why-grid">
 
     <div class="why-card">
@@ -514,9 +544,9 @@
         <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
         <circle cx="12" cy="12" r="3"/>
       </svg>
-      <div class="why-card-title">In the pantry</div>
-      <div class="why-card-heading">Patterns that went unread.</div>
-      <p class="why-card-body">A food bank's records are often wide, sparse spreadsheets that no one has time to read closely. The Pantry Dashboard turns those into capacity and demand patterns staff can act on, and it is in community pilot use now.</p>
+      <div class="why-card-title">Pantry Dashboard</div>
+      <div class="why-card-heading">Food bank records as operational views</div>
+      <p class="why-card-body">A food bank's records are often wide, sparse spreadsheets that no one has time to read closely. The Pantry Dashboard turns those into capacity and demand views staff can act on. It is free to use and includes a synthetic sample workbook.</p>
     </div>
 
     <div class="why-card">
@@ -526,8 +556,8 @@
         <path d="M14 14h7v7h-7z"/>
         <path d="M3 14h7v7H3z"/>
       </svg>
-      <div class="why-card-title">On the label</div>
-      <div class="why-card-heading">Nutrition scored consistently.</div>
+      <div class="why-card-title">NutriScan</div>
+      <div class="why-card-heading">Three published nutrition ratings, applied together</div>
       <p class="why-card-body">Front-of-pack scores disagree across systems and under-represent some diets. NutriScan brings published methods such as Nutri-Score, NOVA, and FSA traffic lights into one comparison, so a product's nutritional picture is easier to read.</p>
     </div>
 
@@ -536,8 +566,8 @@
         <circle cx="12" cy="12" r="9"/>
         <polygon points="16.2 7.8 13.4 13.4 7.8 16.2 10.6 10.6 16.2 7.8"/>
       </svg>
-      <div class="why-card-title">In the research</div>
-      <div class="why-card-heading">Operations, studied carefully.</div>
+      <div class="why-card-title">Community Food Bank Efficiency</div>
+      <div class="why-card-heading">Research on food bank operations</div>
       <p class="why-card-body">Community Food Bank Efficiency studies workflows, demand patterns, and disparities in access. The work is in preparation, built on the same data the Pantry Dashboard already puts to use.</p>
     </div>
 
